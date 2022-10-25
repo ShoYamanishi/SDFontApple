@@ -1,0 +1,538 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EFFBEAC92900B18E00557B3B /* SDFont.docc in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAC82900B18E00557B3B /* SDFont.docc */; };
+		EFFBEAD52900B18E00557B3B /* SDFont.h in Headers */ = {isa = PBXBuildFile; fileRef = EFFBEAC72900B18E00557B3B /* SDFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFFBEAE02900B20800557B3B /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFBEADF2900B20800557B3B /* MetalKit.framework */; };
+		EFFBEAEE2900B32900557B3B /* SDFontSignedDistanceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE12900B32900557B3B /* SDFontSignedDistanceGenerator.swift */; };
+		EFFBEAEF2900B32900557B3B /* SDFontIOHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE22900B32900557B3B /* SDFontIOHandler.swift */; };
+		EFFBEAF02900B32900557B3B /* SDFontMetalSourceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE32900B32900557B3B /* SDFontMetalSourceCode.swift */; };
+		EFFBEAF22900B32900557B3B /* SDFontUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE52900B32900557B3B /* SDFontUtilities.swift */; };
+		EFFBEAF32900B32900557B3B /* MetalComputeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE62900B32900557B3B /* MetalComputeBase.swift */; };
+		EFFBEAF42900B32900557B3B /* SDFontBinaryPixmapGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE72900B32900557B3B /* SDFontBinaryPixmapGenerator.swift */; };
+		EFFBEAF52900B32900557B3B /* SDFontGlyphPackingFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE82900B32900557B3B /* SDFontGlyphPackingFinder.swift */; };
+		EFFBEAF62900B32900557B3B /* SDFontDownSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE92900B32900557B3B /* SDFontDownSampler.swift */; };
+		EFFBEAF72900B32900557B3B /* SDFontGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAEA2900B32900557B3B /* SDFontGenerator.swift */; };
+		EFFBEAF82900B32900557B3B /* SDFontRuntimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAEB2900B32900557B3B /* SDFontRuntimeHelper.swift */; };
+		EFFBEAF92900B32900557B3B /* MetalZeroInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAEC2900B32900557B3B /* MetalZeroInitializer.swift */; };
+		EFFBEAFA2900B32900557B3B /* SDFontGlyphBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAED2900B32900557B3B /* SDFontGlyphBounds.swift */; };
+		EFFBEB472903555200557B3B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEB462903555200557B3B /* main.swift */; };
+		EFFBEB4B2903557700557B3B /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFBEB3E2903540300557B3B /* MetalKit.framework */; };
+		EFFBEB4C290355BE00557B3B /* SDFontGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAEA2900B32900557B3B /* SDFontGenerator.swift */; };
+		EFFBEB4D290355C300557B3B /* SDFontGlyphBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAED2900B32900557B3B /* SDFontGlyphBounds.swift */; };
+		EFFBEB4E290355C500557B3B /* SDFontBinaryPixmapGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE72900B32900557B3B /* SDFontBinaryPixmapGenerator.swift */; };
+		EFFBEB4F290355C800557B3B /* SDFontGlyphPackingFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE82900B32900557B3B /* SDFontGlyphPackingFinder.swift */; };
+		EFFBEB50290355CA00557B3B /* SDFontIOHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE22900B32900557B3B /* SDFontIOHandler.swift */; };
+		EFFBEB51290355CD00557B3B /* MetalComputeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE62900B32900557B3B /* MetalComputeBase.swift */; };
+		EFFBEB52290355CF00557B3B /* SDFontSignedDistanceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE12900B32900557B3B /* SDFontSignedDistanceGenerator.swift */; };
+		EFFBEB53290355D200557B3B /* SDFontDownSampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE92900B32900557B3B /* SDFontDownSampler.swift */; };
+		EFFBEB54290355D600557B3B /* MetalZeroInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAEC2900B32900557B3B /* MetalZeroInitializer.swift */; };
+		EFFBEB55290355D900557B3B /* SDFontMetalSourceCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE32900B32900557B3B /* SDFontMetalSourceCode.swift */; };
+		EFFBEB56290355DB00557B3B /* SDFontUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFBEAE52900B32900557B3B /* SDFontUtilities.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EFFBEB422903555200557B3B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EFFBEAC42900B18E00557B3B /* SDFont.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDFont.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFFBEAC72900B18E00557B3B /* SDFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDFont.h; sourceTree = "<group>"; };
+		EFFBEAC82900B18E00557B3B /* SDFont.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = SDFont.docc; sourceTree = "<group>"; };
+		EFFBEADF2900B20800557B3B /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.0.sdk/System/Library/Frameworks/MetalKit.framework; sourceTree = DEVELOPER_DIR; };
+		EFFBEAE12900B32900557B3B /* SDFontSignedDistanceGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFontSignedDistanceGenerator.swift; sourceTree = "<group>"; };
+		EFFBEAE22900B32900557B3B /* SDFontIOHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFontIOHandler.swift; sourceTree = "<group>"; };
+		EFFBEAE32900B32900557B3B /* SDFontMetalSourceCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFontMetalSourceCode.swift; sourceTree = "<group>"; };
+		EFFBEAE42900B32900557B3B /* SDFont.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = SDFont.metal; sourceTree = "<group>"; };
+		EFFBEAE52900B32900557B3B /* SDFontUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFontUtilities.swift; sourceTree = "<group>"; };
+		EFFBEAE62900B32900557B3B /* MetalComputeBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalComputeBase.swift; sourceTree = "<group>"; };
+		EFFBEAE72900B32900557B3B /* SDFontBinaryPixmapGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFontBinaryPixmapGenerator.swift; sourceTree = "<group>"; };
+		EFFBEAE82900B32900557B3B /* SDFontGlyphPackingFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFontGlyphPackingFinder.swift; sourceTree = "<group>"; };
+		EFFBEAE92900B32900557B3B /* SDFontDownSampler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFontDownSampler.swift; sourceTree = "<group>"; };
+		EFFBEAEA2900B32900557B3B /* SDFontGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFontGenerator.swift; sourceTree = "<group>"; };
+		EFFBEAEB2900B32900557B3B /* SDFontRuntimeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFontRuntimeHelper.swift; sourceTree = "<group>"; };
+		EFFBEAEC2900B32900557B3B /* MetalZeroInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalZeroInitializer.swift; sourceTree = "<group>"; };
+		EFFBEAED2900B32900557B3B /* SDFontGlyphBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFontGlyphBounds.swift; sourceTree = "<group>"; };
+		EFFBEB3E2903540300557B3B /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		EFFBEB442903555200557B3B /* sdfontgen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sdfontgen; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFFBEB462903555200557B3B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EFFBEAC12900B18E00557B3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFFBEAE02900B20800557B3B /* MetalKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFFBEB412903555200557B3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFFBEB4B2903557700557B3B /* MetalKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EFFBEABA2900B18E00557B3B = {
+			isa = PBXGroup;
+			children = (
+				EFFBEAC62900B18E00557B3B /* SDFont */,
+				EFFBEB452903555200557B3B /* sdfontgen */,
+				EFFBEAC52900B18E00557B3B /* Products */,
+				EFFBEADE2900B20800557B3B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EFFBEAC52900B18E00557B3B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EFFBEAC42900B18E00557B3B /* SDFont.framework */,
+				EFFBEB442903555200557B3B /* sdfontgen */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EFFBEAC62900B18E00557B3B /* SDFont */ = {
+			isa = PBXGroup;
+			children = (
+				EFFBEAEA2900B32900557B3B /* SDFontGenerator.swift */,
+				EFFBEAEB2900B32900557B3B /* SDFontRuntimeHelper.swift */,
+				EFFBEAED2900B32900557B3B /* SDFontGlyphBounds.swift */,
+				EFFBEAE22900B32900557B3B /* SDFontIOHandler.swift */,
+				EFFBEAE52900B32900557B3B /* SDFontUtilities.swift */,
+				EFFBEAE82900B32900557B3B /* SDFontGlyphPackingFinder.swift */,
+				EFFBEAE72900B32900557B3B /* SDFontBinaryPixmapGenerator.swift */,
+				EFFBEAE12900B32900557B3B /* SDFontSignedDistanceGenerator.swift */,
+				EFFBEAE92900B32900557B3B /* SDFontDownSampler.swift */,
+				EFFBEAE62900B32900557B3B /* MetalComputeBase.swift */,
+				EFFBEAEC2900B32900557B3B /* MetalZeroInitializer.swift */,
+				EFFBEAE32900B32900557B3B /* SDFontMetalSourceCode.swift */,
+				EFFBEAE42900B32900557B3B /* SDFont.metal */,
+				EFFBEAC72900B18E00557B3B /* SDFont.h */,
+				EFFBEAC82900B18E00557B3B /* SDFont.docc */,
+			);
+			path = SDFont;
+			sourceTree = "<group>";
+		};
+		EFFBEADE2900B20800557B3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFFBEB3E2903540300557B3B /* MetalKit.framework */,
+				EFFBEADF2900B20800557B3B /* MetalKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EFFBEB452903555200557B3B /* sdfontgen */ = {
+			isa = PBXGroup;
+			children = (
+				EFFBEB462903555200557B3B /* main.swift */,
+			);
+			path = sdfontgen;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EFFBEABF2900B18E00557B3B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFFBEAD52900B18E00557B3B /* SDFont.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EFFBEAC32900B18E00557B3B /* SDFont */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFFBEAD82900B18E00557B3B /* Build configuration list for PBXNativeTarget "SDFont" */;
+			buildPhases = (
+				EFFBEABF2900B18E00557B3B /* Headers */,
+				EFFBEAC02900B18E00557B3B /* Sources */,
+				EFFBEAC12900B18E00557B3B /* Frameworks */,
+				EFFBEAC22900B18E00557B3B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SDFont;
+			productName = SDFont;
+			productReference = EFFBEAC42900B18E00557B3B /* SDFont.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EFFBEB432903555200557B3B /* sdfontgen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFFBEB482903555200557B3B /* Build configuration list for PBXNativeTarget "sdfontgen" */;
+			buildPhases = (
+				EFFBEB402903555200557B3B /* Sources */,
+				EFFBEB412903555200557B3B /* Frameworks */,
+				EFFBEB422903555200557B3B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sdfontgen;
+			productName = sdfontgen;
+			productReference = EFFBEB442903555200557B3B /* sdfontgen */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EFFBEABB2900B18E00557B3B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					EFFBEAC32900B18E00557B3B = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					EFFBEB432903555200557B3B = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+				};
+			};
+			buildConfigurationList = EFFBEABE2900B18E00557B3B /* Build configuration list for PBXProject "SDFont" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EFFBEABA2900B18E00557B3B;
+			productRefGroup = EFFBEAC52900B18E00557B3B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EFFBEAC32900B18E00557B3B /* SDFont */,
+				EFFBEB432903555200557B3B /* sdfontgen */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EFFBEAC22900B18E00557B3B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EFFBEAC02900B18E00557B3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFFBEAEF2900B32900557B3B /* SDFontIOHandler.swift in Sources */,
+				EFFBEAF52900B32900557B3B /* SDFontGlyphPackingFinder.swift in Sources */,
+				EFFBEAEE2900B32900557B3B /* SDFontSignedDistanceGenerator.swift in Sources */,
+				EFFBEAF32900B32900557B3B /* MetalComputeBase.swift in Sources */,
+				EFFBEAF72900B32900557B3B /* SDFontGenerator.swift in Sources */,
+				EFFBEAFA2900B32900557B3B /* SDFontGlyphBounds.swift in Sources */,
+				EFFBEAF62900B32900557B3B /* SDFontDownSampler.swift in Sources */,
+				EFFBEAF82900B32900557B3B /* SDFontRuntimeHelper.swift in Sources */,
+				EFFBEAC92900B18E00557B3B /* SDFont.docc in Sources */,
+				EFFBEAF92900B32900557B3B /* MetalZeroInitializer.swift in Sources */,
+				EFFBEAF22900B32900557B3B /* SDFontUtilities.swift in Sources */,
+				EFFBEAF02900B32900557B3B /* SDFontMetalSourceCode.swift in Sources */,
+				EFFBEAF42900B32900557B3B /* SDFontBinaryPixmapGenerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFFBEB402903555200557B3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFFBEB52290355CF00557B3B /* SDFontSignedDistanceGenerator.swift in Sources */,
+				EFFBEB50290355CA00557B3B /* SDFontIOHandler.swift in Sources */,
+				EFFBEB55290355D900557B3B /* SDFontMetalSourceCode.swift in Sources */,
+				EFFBEB472903555200557B3B /* main.swift in Sources */,
+				EFFBEB51290355CD00557B3B /* MetalComputeBase.swift in Sources */,
+				EFFBEB54290355D600557B3B /* MetalZeroInitializer.swift in Sources */,
+				EFFBEB4D290355C300557B3B /* SDFontGlyphBounds.swift in Sources */,
+				EFFBEB4C290355BE00557B3B /* SDFontGenerator.swift in Sources */,
+				EFFBEB4F290355C800557B3B /* SDFontGlyphPackingFinder.swift in Sources */,
+				EFFBEB53290355D200557B3B /* SDFontDownSampler.swift in Sources */,
+				EFFBEB56290355DB00557B3B /* SDFontUtilities.swift in Sources */,
+				EFFBEB4E290355C500557B3B /* SDFontBinaryPixmapGenerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EFFBEAD62900B18E00557B3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EFFBEAD72900B18E00557B3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EFFBEAD92900B18E00557B3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 64SMH392EJ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sdfont.SDFont;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EFFBEADA2900B18E00557B3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 64SMH392EJ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sdfont.SDFont;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EFFBEB492903555200557B3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 64SMH392EJ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		EFFBEB4A2903555200557B3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 64SMH392EJ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EFFBEABE2900B18E00557B3B /* Build configuration list for PBXProject "SDFont" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFFBEAD62900B18E00557B3B /* Debug */,
+				EFFBEAD72900B18E00557B3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFFBEAD82900B18E00557B3B /* Build configuration list for PBXNativeTarget "SDFont" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFFBEAD92900B18E00557B3B /* Debug */,
+				EFFBEADA2900B18E00557B3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFFBEB482903555200557B3B /* Build configuration list for PBXNativeTarget "sdfontgen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFFBEB492903555200557B3B /* Debug */,
+				EFFBEB4A2903555200557B3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EFFBEABB2900B18E00557B3B /* Project object */;
+}

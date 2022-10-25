@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF8C45C72904F80E00B53435 /* SWOpeningRollARApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45C62904F80E00B53435 /* SWOpeningRollARApp.swift */; };
+		EF8C45C92904F80E00B53435 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45C82904F80E00B53435 /* ContentView.swift */; };
+		EF8C45CB2904F81000B53435 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF8C45CA2904F81000B53435 /* Assets.xcassets */; };
+		EF8C45CE2904F81000B53435 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF8C45CD2904F81000B53435 /* Preview Assets.xcassets */; };
+		EF8C45D62904F84E00B53435 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8C45D52904F84D00B53435 /* ARKit.framework */; };
+		EF8C45D82904F85700B53435 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8C45D72904F85700B53435 /* MetalKit.framework */; };
+		EF8C45E22904F97300B53435 /* ARCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45DA2904F97300B53435 /* ARCoordinator.swift */; };
+		EF8C45E42904F97300B53435 /* Textures.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF8C45DC2904F97300B53435 /* Textures.xcassets */; };
+		EF8C45E62904F97300B53435 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45DE2904F97300B53435 /* MetalView.swift */; };
+		EF8C45E72904F97300B53435 /* TouchMTKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45DF2904F97300B53435 /* TouchMTKView.swift */; };
+		EF8C45E82904F97300B53435 /* ShaderCameraImage.metal in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45E02904F97300B53435 /* ShaderCameraImage.metal */; };
+		EF8C45EA2904FA2D00B53435 /* PhotoImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45E92904FA2D00B53435 /* PhotoImageRenderer.swift */; };
+		EF8C45F12905033F00B53435 /* default_renderer.metal in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45EE2905033E00B53435 /* default_renderer.metal */; };
+		EF8C45F82905035100B53435 /* FloatUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45F22905035000B53435 /* FloatUtil.swift */; };
+		EF8C45F92905035100B53435 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45F32905035000B53435 /* Camera.swift */; };
+		EF8C45FA2905035100B53435 /* PerSceneRenderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45F42905035000B53435 /* PerSceneRenderHelper.swift */; };
+		EF8C45FB2905035100B53435 /* RenderUniforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45F52905035000B53435 /* RenderUniforms.swift */; };
+		EF8C45FC2905035100B53435 /* RenderVertexIns.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45F62905035000B53435 /* RenderVertexIns.swift */; };
+		EF8C45FD2905035100B53435 /* VertexDescriptorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45F72905035100B53435 /* VertexDescriptorGenerator.swift */; };
+		EF8C46022905039600B53435 /* AnimationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45FE2905039600B53435 /* AnimationConstants.swift */; };
+		EF8C46032905039600B53435 /* SDTextPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C45FF2905039600B53435 /* SDTextPlane.swift */; };
+		EF8C46042905039600B53435 /* AnimationSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C46002905039600B53435 /* AnimationSequencer.swift */; };
+		EF8C46052905039600B53435 /* WorldManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C46012905039600B53435 /* WorldManager.swift */; };
+		EF8C4607290503B300B53435 /* SDFont.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8C4606290503B300B53435 /* SDFont.xcframework */; };
+		EF8C4608290503B300B53435 /* SDFont.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF8C4606290503B300B53435 /* SDFont.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EF8C4609290503B300B53435 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EF8C4608290503B300B53435 /* SDFont.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EF8C45C32904F80E00B53435 /* SWOpeningRollAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWOpeningRollAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF8C45C62904F80E00B53435 /* SWOpeningRollARApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWOpeningRollARApp.swift; sourceTree = "<group>"; };
+		EF8C45C82904F80E00B53435 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EF8C45CA2904F81000B53435 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EF8C45CD2904F81000B53435 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EF8C45D52904F84D00B53435 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
+		EF8C45D72904F85700B53435 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		EF8C45DA2904F97300B53435 /* ARCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARCoordinator.swift; sourceTree = "<group>"; };
+		EF8C45DC2904F97300B53435 /* Textures.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Textures.xcassets; sourceTree = "<group>"; };
+		EF8C45DE2904F97300B53435 /* MetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
+		EF8C45DF2904F97300B53435 /* TouchMTKView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchMTKView.swift; sourceTree = "<group>"; };
+		EF8C45E02904F97300B53435 /* ShaderCameraImage.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = ShaderCameraImage.metal; sourceTree = "<group>"; };
+		EF8C45E92904FA2D00B53435 /* PhotoImageRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoImageRenderer.swift; sourceTree = "<group>"; };
+		EF8C45EE2905033E00B53435 /* default_renderer.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = default_renderer.metal; sourceTree = "<group>"; };
+		EF8C45EF2905033E00B53435 /* render_uniforms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = render_uniforms.h; sourceTree = "<group>"; };
+		EF8C45F02905033E00B53435 /* render_vertex_ins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = render_vertex_ins.h; sourceTree = "<group>"; };
+		EF8C45F22905035000B53435 /* FloatUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatUtil.swift; sourceTree = "<group>"; };
+		EF8C45F32905035000B53435 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		EF8C45F42905035000B53435 /* PerSceneRenderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerSceneRenderHelper.swift; sourceTree = "<group>"; };
+		EF8C45F52905035000B53435 /* RenderUniforms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderUniforms.swift; sourceTree = "<group>"; };
+		EF8C45F62905035000B53435 /* RenderVertexIns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderVertexIns.swift; sourceTree = "<group>"; };
+		EF8C45F72905035100B53435 /* VertexDescriptorGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VertexDescriptorGenerator.swift; sourceTree = "<group>"; };
+		EF8C45FE2905039600B53435 /* AnimationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationConstants.swift; sourceTree = "<group>"; };
+		EF8C45FF2905039600B53435 /* SDTextPlane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTextPlane.swift; sourceTree = "<group>"; };
+		EF8C46002905039600B53435 /* AnimationSequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationSequencer.swift; sourceTree = "<group>"; };
+		EF8C46012905039600B53435 /* WorldManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldManager.swift; sourceTree = "<group>"; };
+		EF8C4606290503B300B53435 /* SDFont.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDFont.xcframework; path = ../SDFont/build/SDFont.xcframework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF8C45C02904F80E00B53435 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF8C4607290503B300B53435 /* SDFont.xcframework in Frameworks */,
+				EF8C45D62904F84E00B53435 /* ARKit.framework in Frameworks */,
+				EF8C45D82904F85700B53435 /* MetalKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF8C45BA2904F80E00B53435 = {
+			isa = PBXGroup;
+			children = (
+				EF8C45EC2905030F00B53435 /* rendering */,
+				EF8C45EB2905030000B53435 /* demo */,
+				EF8C45C52904F80E00B53435 /* SWOpeningRollAR */,
+				EF8C45C42904F80E00B53435 /* Products */,
+				EF8C45D42904F84D00B53435 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EF8C45C42904F80E00B53435 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF8C45C32904F80E00B53435 /* SWOpeningRollAR.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF8C45C52904F80E00B53435 /* SWOpeningRollAR */ = {
+			isa = PBXGroup;
+			children = (
+				EF8C45DA2904F97300B53435 /* ARCoordinator.swift */,
+				EF8C45DE2904F97300B53435 /* MetalView.swift */,
+				EF8C45E02904F97300B53435 /* ShaderCameraImage.metal */,
+				EF8C45DC2904F97300B53435 /* Textures.xcassets */,
+				EF8C45DF2904F97300B53435 /* TouchMTKView.swift */,
+				EF8C45C62904F80E00B53435 /* SWOpeningRollARApp.swift */,
+				EF8C45E92904FA2D00B53435 /* PhotoImageRenderer.swift */,
+				EF8C45C82904F80E00B53435 /* ContentView.swift */,
+				EF8C45CA2904F81000B53435 /* Assets.xcassets */,
+				EF8C45CC2904F81000B53435 /* Preview Content */,
+			);
+			path = SWOpeningRollAR;
+			sourceTree = "<group>";
+		};
+		EF8C45CC2904F81000B53435 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EF8C45CD2904F81000B53435 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EF8C45D42904F84D00B53435 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF8C4606290503B300B53435 /* SDFont.xcframework */,
+				EF8C45D72904F85700B53435 /* MetalKit.framework */,
+				EF8C45D52904F84D00B53435 /* ARKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF8C45EB2905030000B53435 /* demo */ = {
+			isa = PBXGroup;
+			children = (
+				EF8C45FE2905039600B53435 /* AnimationConstants.swift */,
+				EF8C46002905039600B53435 /* AnimationSequencer.swift */,
+				EF8C45FF2905039600B53435 /* SDTextPlane.swift */,
+				EF8C46012905039600B53435 /* WorldManager.swift */,
+			);
+			path = demo;
+			sourceTree = "<group>";
+		};
+		EF8C45EC2905030F00B53435 /* rendering */ = {
+			isa = PBXGroup;
+			children = (
+				EF8C45F32905035000B53435 /* Camera.swift */,
+				EF8C45F22905035000B53435 /* FloatUtil.swift */,
+				EF8C45F42905035000B53435 /* PerSceneRenderHelper.swift */,
+				EF8C45F52905035000B53435 /* RenderUniforms.swift */,
+				EF8C45F62905035000B53435 /* RenderVertexIns.swift */,
+				EF8C45F72905035100B53435 /* VertexDescriptorGenerator.swift */,
+				EF8C45ED2905031600B53435 /* shaders */,
+			);
+			path = rendering;
+			sourceTree = "<group>";
+		};
+		EF8C45ED2905031600B53435 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				EF8C45EE2905033E00B53435 /* default_renderer.metal */,
+				EF8C45EF2905033E00B53435 /* render_uniforms.h */,
+				EF8C45F02905033E00B53435 /* render_vertex_ins.h */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF8C45C22904F80E00B53435 /* SWOpeningRollAR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF8C45D12904F81000B53435 /* Build configuration list for PBXNativeTarget "SWOpeningRollAR" */;
+			buildPhases = (
+				EF8C45BF2904F80E00B53435 /* Sources */,
+				EF8C45C02904F80E00B53435 /* Frameworks */,
+				EF8C45C12904F80E00B53435 /* Resources */,
+				EF8C4609290503B300B53435 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SWOpeningRollAR;
+			productName = SWOpeningRollAR;
+			productReference = EF8C45C32904F80E00B53435 /* SWOpeningRollAR.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF8C45BB2904F80E00B53435 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					EF8C45C22904F80E00B53435 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+				};
+			};
+			buildConfigurationList = EF8C45BE2904F80E00B53435 /* Build configuration list for PBXProject "SWOpeningRollAR" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EF8C45BA2904F80E00B53435;
+			productRefGroup = EF8C45C42904F80E00B53435 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF8C45C22904F80E00B53435 /* SWOpeningRollAR */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF8C45C12904F80E00B53435 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF8C45E42904F97300B53435 /* Textures.xcassets in Resources */,
+				EF8C45CE2904F81000B53435 /* Preview Assets.xcassets in Resources */,
+				EF8C45CB2904F81000B53435 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF8C45BF2904F80E00B53435 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF8C45C92904F80E00B53435 /* ContentView.swift in Sources */,
+				EF8C45E62904F97300B53435 /* MetalView.swift in Sources */,
+				EF8C45F12905033F00B53435 /* default_renderer.metal in Sources */,
+				EF8C45E22904F97300B53435 /* ARCoordinator.swift in Sources */,
+				EF8C45E82904F97300B53435 /* ShaderCameraImage.metal in Sources */,
+				EF8C45FA2905035100B53435 /* PerSceneRenderHelper.swift in Sources */,
+				EF8C45C72904F80E00B53435 /* SWOpeningRollARApp.swift in Sources */,
+				EF8C45FB2905035100B53435 /* RenderUniforms.swift in Sources */,
+				EF8C45F82905035100B53435 /* FloatUtil.swift in Sources */,
+				EF8C45F92905035100B53435 /* Camera.swift in Sources */,
+				EF8C45FC2905035100B53435 /* RenderVertexIns.swift in Sources */,
+				EF8C46042905039600B53435 /* AnimationSequencer.swift in Sources */,
+				EF8C45E72904F97300B53435 /* TouchMTKView.swift in Sources */,
+				EF8C46032905039600B53435 /* SDTextPlane.swift in Sources */,
+				EF8C46052905039600B53435 /* WorldManager.swift in Sources */,
+				EF8C46022905039600B53435 /* AnimationConstants.swift in Sources */,
+				EF8C45FD2905035100B53435 /* VertexDescriptorGenerator.swift in Sources */,
+				EF8C45EA2904FA2D00B53435 /* PhotoImageRenderer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EF8C45CF2904F81000B53435 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EF8C45D02904F81000B53435 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EF8C45D22904F81000B53435 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SWOpeningRollAR/Preview Content\"";
+				DEVELOPMENT_TEAM = 64SMH392EJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This App uses the rear camera for the AR experience.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sdfont.SWOpeningRollAR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF8C45D32904F81000B53435 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SWOpeningRollAR/Preview Content\"";
+				DEVELOPMENT_TEAM = 64SMH392EJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This App uses the rear camera for the AR experience.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sdfont.SWOpeningRollAR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF8C45BE2904F80E00B53435 /* Build configuration list for PBXProject "SWOpeningRollAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF8C45CF2904F81000B53435 /* Debug */,
+				EF8C45D02904F81000B53435 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF8C45D12904F81000B53435 /* Build configuration list for PBXNativeTarget "SWOpeningRollAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF8C45D22904F81000B53435 /* Debug */,
+				EF8C45D32904F81000B53435 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF8C45BB2904F80E00B53435 /* Project object */;
+}
