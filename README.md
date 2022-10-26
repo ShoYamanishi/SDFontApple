@@ -1,13 +1,13 @@
 # SDFontApple
 A signed distant font generator and a runtime helper for MacOSX and iOS that utilize Metal and CoreText.
-This is a retake to my original [SDFont](https://github.com/ShoYamanishi/SDFont), which depends on OpenGL & libfreetype.
+This is a retake to my original [SDFont](https://github.com/ShoYamanishi/SDFont), which depends on [OpenGL](https://www.opengl.org/) & [FreeType](https://freetype.org/).
 
-SDFontApple consists of the following components:
+SDFontApple comes with the following components:
 
-- **SDFont.xcframework**: The framework for macos and iOS.
-- **sdfontgen**: The command-line font processor for macos.
+- **SDFont.xcframework**: The main framework for macos and iOS.
+- **sdfontgen**: The command-line font generator for macos.
 - **SWOpeningRoll**: A sample program for macos and iOS that shows the 3D opening roll of Star Wars film in the signed distance fonts.
-- **SWOpeningRollAR**: A sample program for iOS that shows the opening roll in the AR environment anchored at the tapped place.
+- **SWOpeningRollAR**: A sample program for iOS that shows the opening roll in the AR environment anchored to the tapped position in the space.
 
 <a href="doc/StarWarsMacBanner.png"> <img src="doc/StarWarsMacBanner.png" height="200" alt="Overview"/></a>
 <a href="doc/StarWarsARBanner.png"> <img src="doc/StarWarsARBanner.png" height="200" alt="Overview"/></a>
@@ -26,7 +26,7 @@ SDFontApple consists of the following components:
   - [Demo App: SWOpeningRoll](#demo-app-swopeningroll)
   - [Demo App: SWOpeningRollAR](#demo-app-swopeningrollar)
 - [Usage](#usage)
-  - [Find the List of the Available Fonts.](#find-the-list-of-the-available-fonts)
+  - [Find the List of Available Fonts.](#find-the-list-of-available-fonts)
   - [Generating Signed Distance Fonts on Mac Off-line.](#generating-signed-distance-fonts-on-mac-off-line)
   - [Generating Signed Distance Fonts at Runtime.](#generating-signed-distance-fonts-at-runtime)
   - [Using the Signed Distance Fonts for Rendering.](#using-the-signed-distance-fonts-for-rendering)
@@ -36,20 +36,20 @@ SDFontApple consists of the following components:
 - [Acknowledgment](#acknowledgment)
 
 # About Signed Distance Fonts
-This is an awesome technique to render typefaces by GPU. It was originally prposed by Chris Green of Valve at SIGGRAPH 2007
+This is an awesome technique to render typefaces by GPU. It was originally proposed by Chris Green of Valve at SIGGRAPH 2007
 [[PDF]](https://steamcdn-a.akamaihd.net/apps/valve/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf).
-In the normal font rendering by CPU, say, with [CoreText](https://developer.apple.com/documentation/coretext) or [FreeType](https://freetype.org/), the shapes of the glyphs are stored in the vector (Bezier curve etc.) graphics format, and at runtime, they are drawn to the drawable as a bitmap.
+In the normal font rendering by CPU, say, with [CoreText](https://developer.apple.com/documentation/coretext) or [FreeType](https://freetype.org/), the shapes of the glyphs are stored in the vector graphics format (Bezier curves), and at runtime, they are converted to a bitmap for a specific font size.
 
-On the contrary, the signed distant fonts techinque generates a texture for the glyphs in the signed distance representation in which the pixels far outside the glyph boundaries get 0, the pixels at the boundaries get values near 0.5, and the pixels deep inside the glyphs get 1.0. The glyphs of the same typeface are usually packed into a single texture, and each glyph gets the corresponding rectangular bounding box in the texture coordinates. This texture generation is usually done as an off-line processing.
-At runtime, the glyphs are rendered simply by specifying the bounding boxes and the texture to the GPU.
+On the contrary, the signed distant fonts techinque generates a texture for the glyphs in the signed distance representation in which the value of each pixel represents the distance from the closest glyph boundary. The glyphs of the same typeface are usually packed into a single texture, and each glyph gets the corresponding rectangular bounding box in the texture coordinates. This texture generation is usually done as an off-line processing.
+At runtime, the glyphs are rendered simply by quads specifying the bounding boxes in the texture uv-coordinates to the GPU.
 
-The following image shows a sample signed distance texture. It shows the first 256 glyphs in Helvetica font with the inner and outer bounding boxes for each glyph.
+The following image shows a sample signed distance texture. It shows the first 256 glyphs in Helvetica font with the inner and outer bounding boxes for each glyph. (Click to magnify.)
 
 <a href="doc/Helvetica.png"> <img src="doc/Helvetica.png" height="300" alt="Overview"/></a>
 
 # Advantages of Signed Distance Fonts
 
-- ✅ Good visual quality for the wide range of the font sizes with a single signed distance texture. No noticeable jagged edges when magnified.
+- ✅ Good visual quality for the wide range of font sizes with a single texture file. No noticeable jagged edges when magnified.
 - ✅ Little overhead for rendering at runtime. No need to convert the vector graphics to a bitmap, as the glyphs have been in a way already rendered to the texture.
 - ✅ Dynamic transformation of the typefaces at runtime. You can move, scale, rotate, sheer the typefaces just like the geometric transfomation for the other rendered objects.
 - ✅ Typographic effects by the fragment shader. They can be achieved by applying a function to the sampled value from the signed distance texture. In the following sub-section you can see some sample effects with their corresponding fragment functions.
@@ -57,49 +57,49 @@ The following image shows a sample signed distance texture. It shows the first 2
 ## Typographic Effects
 You can change the appearance of the rendered typefaces by changing the output alpha value in the fragment shader.
 The following shows some notable effects with their corresponding functions to alter the alpha value.
-Please see [the fragment shader code](SWOpeningRoll/rendering/shaders/default_renderer.metal) for the corresponding fragment shader code.
+Please see [the fragment shader code](SWOpeningRoll/rendering/shaders/default_renderer.metal) for details.
 
 ### Step
-<a href="doc/step.png"> <img src="doc/step.png" width="400" alt="Overview"/></a>
-<a href="doc/plot_step.png"> <img src="doc/plot_step.png" width="250" alt="Overview"/></a>
+<a href="doc/step.png"> <img src="doc/step.png" width="500" alt="Overview"/></a>
+<a href="doc/plot_step.png"> <img src="doc/plot_step.png" width="300" alt="Overview"/></a>
 
 ### Smooth Step
-<a href="doc/smooth_step.png"> <img src="doc/smooth_step.png" width="400" alt="Overview"/></a>
-<a href="doc/plot_smooth_step.png"> <img src="doc/plot_smooth_step.png" width="250" alt="Overview"/></a>
+<a href="doc/smooth_step.png"> <img src="doc/smooth_step.png" width="500" alt="Overview"/></a>
+<a href="doc/plot_smooth_step.png"> <img src="doc/plot_smooth_step.png" width="300" alt="Overview"/></a>
 
 ### Slope Step
-<a href="doc/slope_step.png"> <img src="doc/slope_step.png" width="400" alt="Overview"/></a>
-<a href="doc/plot_slope_step.png"> <img src="doc/plot_slope_step.png" width="250" alt="Overview"/></a>
+<a href="doc/slope_step.png"> <img src="doc/slope_step.png" width="500" alt="Overview"/></a>
+<a href="doc/plot_slope_step.png"> <img src="doc/plot_slope_step.png" width="300" alt="Overview"/></a>
 
 ### Pass-through
-<a href="doc/pass_through.png"> <img src="doc/pass_through.png" width="400" alt="Overview"/></a>
-<a href="doc/plot_pass_through.png"> <img src="doc/plot_pass_through.png" width="250" alt="Overview"/></a>
+<a href="doc/pass_through.png"> <img src="doc/pass_through.png" width="500" alt="Overview"/></a>
+<a href="doc/plot_pass_through.png"> <img src="doc/plot_pass_through.png" width="300" alt="Overview"/></a>
 
 ### Trapezoid
-<a href="doc/trapezoid.png"> <img src="doc/trapezoid.png" width="400" alt="Overview"/></a>
-<a href="doc/plot_trapezoid.png"> <img src="doc/plot_trapezoid.png" width="250" alt="Overview"/></a>
+<a href="doc/trapezoid.png"> <img src="doc/trapezoid.png" width="500" alt="Overview"/></a>
+<a href="doc/plot_trapezoid.png"> <img src="doc/plot_trapezoid.png" width="300" alt="Overview"/></a>
 
 ### Twin Peaks
-<a href="doc/twin_peaks.png"> <img src="doc/twin_peaks.png" width="400" alt="Overview"/></a>
-<a href="doc/plot_twin_peaks.png"> <img src="doc/plot_twin_peaks.png" width="250" alt="Overview"/></a>
+<a href="doc/twin_peaks.png"> <img src="doc/twin_peaks.png" width="500" alt="Overview"/></a>
+<a href="doc/plot_twin_peaks.png"> <img src="doc/plot_twin_peaks.png" width="300" alt="Overview"/></a>
 
 ### Halo Effect
-<a href="doc/halo.png"> <img src="doc/halo.png" width="400" alt="Overview"/></a>
-<a href="doc/plot_halo.png"> <img src="doc/plot_halo.png" width="250" alt="Overview"/></a>
+<a href="doc/halo.png"> <img src="doc/halo.png" width="500" alt="Overview"/></a>
+<a href="doc/plot_halo.png"> <img src="doc/plot_halo.png" width="300" alt="Overview"/></a>
 
 ### Drop Shadow
-<a href="doc/drop_shadow.png"> <img src="doc/drop_shadow.png" width="400" alt="Overview"/></a>
+<a href="doc/drop_shadow.png"> <img src="doc/drop_shadow.png" width="800" alt="Overview"/></a>
 
-A drop shadow can be implemented by two render paths. In this example, the drop shadow is renered first by the smooth step shader in black, and then the typeface is rendered by the smooth step shader (with a narrower band) in yellow.
+A drop shadow can be implemented by two render passes. In the example above, the drop shadow is rendered first by the smooth step shader in black, and then the typeface is rendered by another smooth step shader with a narrower band in brown.
 
 # Build & Instsall
 
 ## SDFont Framework
 1. Open `SDFontApple/SDFont/SDFont.xcodeproj`, go to the project `SDFont`, and select the target `SDFont`.
 2. Set Signing & Capabilities to your environment for your developer ID.
-3. Select the sceme `SDFont`, and the taret to your device (ex. My Mac or iPhone 13 mini), and build.
+3. Select the scheme `SDFont`, and the taret to your device (ex. My Mac or iPhone 13 mini), and build.
 
-Alternatively, after the signing & capabilities have been setup for you, you can also run the convenience build process with a batch script.
+Alternatively, after the signing & capabilities have been setup for you, you can also run the build process with the following batch script.
 1. Open a terminal
 2. `$ xcode-select -s <path/to/Xcode.app>` first if necessary.
 3. `$ cd SDFontApple/SDFont`
@@ -115,24 +115,24 @@ This will create *build/SDFont.scframework*, *build/sdfontgen*, and *./SDFont.do
 ## Command-line generator: sdfontgen
 1. Open `SDFontApple/SDFont/SDFont.xcodeproj`, go to the project `SDFont`, and select the target `sdfontgen`.
 2. Set Signing & Capabilities to your environment for your developer ID.
-3. Select the sceme `sdfontgen`, and the taret to your device (ex. My Mac), and build.
+3. Select the scheme `sdfontgen`, and the target to your device (ex. My Mac), and build.
 
 ## Demo App: SWOpeningRoll
 1. Open `SDFontApple/SWOpeningRoll/SWOpeningRoll.xcodeproj`, go to the project `SWOpeningRoll`, and select the target `SWOpeningRollmacos` for macOS or the target 'SWOpeningRollios` for iOS.
 2. Set Signing & Capabilities to your environment for your developer ID.
-3. Adjust the path to SDFont if necessary.
-4. Select the sceme `SWOpeningRollmacos` or `SWOpeningRollios`, and the taret to your device (ex. My Mac or iPhone 13 mini), and build & run.
+3. Adjust the path to the framework SDFont if necessary.
+4. Select the scheme `SWOpeningRollmacos` or `SWOpeningRollios`, and the target to your device (ex. My Mac or iPhone 13 mini), and build & run.
 
 ## Demo App: SWOpeningRollAR
 1. Open `SDFontApple/SWOpeningRollAR/SWOpeningRollAR.xcodeproj`, go to the project `SWOpeningRollAR`, and select the target `SWOpeningRollAR`.
 2. Set Signing & Capabilities to your environment for your developer ID.
-3. Adjust the path to SDFont if necessary.
-4. Select the sceme `SWOpeningRollAR`, and the taret to your device (ex. iPhone 13 mini), and build & run.
+3. Adjust the path to the framework SDFont if necessary.
+4. Select the scheme `SWOpeningRollAR`, and the target to your device (ex. iPhone 13 mini), and build & run.
 
 # Usage
 An API reference is available in docc archive, which can be found in `SDFontApple/SDFont/SDFont.doccarchive` if you have run `SDFontApple/SDFont/build_all.sh`.
 
-## Find the List of the Available Fonts.
+## Find the List of Available Fonts.
 On macos, run `sdfontgen -showfontlist`.
 ```
 mrbean@Beans-Mini % pwd                      
@@ -227,11 +227,11 @@ INFO: Bounding box for glyph 1 is degenerate. Skipping.
 ...
 INFO: Bounding box for glyph 1327 is degenerate. Skipping.
 INFO: Total processing time: 4.357048988342285 seconds. 
-INFO: PNG file path to write [./Helvetica-Bold.png -- file:///Users/shoichiroyamanishi/workarea/repo/SDFontApple/SDFont/build/]: 
-INFO: JSON file path to write [./Helvetica-Bold.json -- file:///Users/shoichiroyamanishi/workarea/repo/SDFontApple/SDFont/build/]: 
+INFO: PNG file path to write [./Helvetica-Bold.png -- file:///Users/mrbean/repo/SDFontApple/SDFont/build/]: 
+INFO: JSON file path to write [./Helvetica-Bold.json -- file:///Users/mrbean/repo/SDFontApple/SDFont/build/]: 
 sdfontgen: finished processing.
 
-mrbean@Beans-Mini build % ls -l Helvetica-Bold.*
+mrbean@Beans-Mini % ls -l Helvetica-Bold.*
 -rw-r--r--@ 1 mrbean museumstaff  243331 Oct 25 02:15 Helvetica-Bold.json
 -rw-r--r--  1 mrbean museumstaff  903737 Oct 25 02:15 Helvetica-Bold.png
 ```
@@ -253,7 +253,7 @@ let sdGenerator = SDFontGenerator(
     usePosixPath                       : false // for iOS and macOS GUI Apps, set it false. For macos commandline Apps, which has no access-limits/sand-boxing to the file system, set true.
 )
 ```
-You will get two types of output: a generated signed distance texture, and a list of bounding boxes.
+This will generate types of data: a generated signed distance texture, and a list of bounding boxes.
 
 To retrieve them, you can either save them to the specified files in PNG and JSON,
 ```
@@ -309,9 +309,9 @@ struct GlyphBound {
     let textureBound : CGRect // The rectangular bounding box of the glyph in the texture coodinate space.
 }
 ```
-Each glyph is represented by GlyphBound. Please note that there is no one-by-one mapping between the character sequence of the string you spefied oto `textPlain` and the glyph sequence for the list in `bounds'. The member `frameBound` is used to generate the coordinates for the quad (or two triangles), and 'textureBound' for their texture uv-coordinates.
+Each glyph is represented by GlyphBound. Please note that there is no one-by-one mapping between the character sequence of the string you specified to `textPlain` and the glyph sequence in the list in `bounds'. The member `frameBound` is used to generate the coordinates for the quad (or two triangles), and 'textureBound' for their texture uv-coordinates.
 
-As a sample for mesh generation and text rendering with Metal, please find `SDTextPlane.generateVerticesAndIndices()`
+A sample for mesh generation and text rendering with Metal can be found in `SDTextPlane.generateVerticesAndIndices()`
 in [SWOpeningRoll/shared/SDTextPlane.swift](./SWOpeningRoll/shared/SDTextPlane.swift).
 
 
@@ -327,14 +327,16 @@ For technical and commercial inquiries, please contact: Shoichiro Yamanishi
 
 yamanishi72@gmail.com
 
+Especially if you are an indy develper, please feel free to contact me.
+
 # Background
 This is a retake to my [SDFont](https://github.com/ShoYamanishi/SDFont), which depends on OpenGL & libfreetype.
 [SDFont](https://github.com/ShoYamanishi/SDFont) used to work for macOS but not anymore since Apple stopped supporting OpenGL.
-Also, I wanted to port SDFont to iOS but I quickly found it was difficult to use FreeType on iOS as the font files are in accessible to the user Apps.
-On the other hand, Apple eco-system provides an excellent typesetting framework called CoreText, and a CPU computing facility called Metal Compute shaders, which can be used for the signed distance generation.
+Also, I wanted to port SDFont to iOS but I quickly found it was difficult to use FreeType on iOS as the font files are inaccessible to the user Apps.
+On the other hand, Apple eco-system provides an excellent typesetting framework called CoreText, and a GPU computing facility called Metal Compute shaders. I wanted to utilize those Apple-specific technologies for signed distance fonts.
 
-This lack of support for OpenGL and libfreetype and availability of CoreText and Metal have motivated me to develope another SDFont framework for the Apple eco-system.
+This lack of support for OpenGL and libfreetype and availability of CoreText and Metal have motivated me to develop another SDFont framework for the Apple eco-system.
 
 # Acknowledgment
 Special thanks to [Warren Moore](https://warrenmoore.net/) for [the accompanying sample code](https://github.com/metal-by-example/sample-code/tree/master/objc/12-TextRendering) to his excellent book [Metal by Example](https://metalbyexample.com) I purchased. I learned a lot about CoreText from his obj-c code, especially how the various coordinate systems in CoreText work together with CoreGraphics.
-(His signed font generator uses a dynamic-programming algorithm (essentially a variant of Dijkstra), which is diffeicult to parallelize. My implementation uses Metal Compute and a per-pixel brute-force vicinity search, which can be parallelized in GPU.)
+His signed font generator uses a dynamic-programming algorithm (essentially a variant of Dijkstra), which is difficult to parallelize. My implementation uses Metal Compute and a per-pixel brute-force vicinity search, which can be parallelized in GPU.
