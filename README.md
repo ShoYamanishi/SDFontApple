@@ -1,4 +1,6 @@
 # SDFontApple
+<a href="doc/drop_shadow.png"> <img src="doc/drop_shadow.png" width="300" alt="Overview"/></a>
+
 A signed distant font generator and a runtime helper for MacOSX and iOS that utilize [Metal](https://developer.apple.com/documentation/metal) and [CoreText](https://developer.apple.com/documentation/coretext).
 This is a retake to my original [SDFont](https://github.com/ShoYamanishi/SDFont), which depends on [OpenGL](https://www.opengl.org/) & [FreeType](https://freetype.org/).
 
