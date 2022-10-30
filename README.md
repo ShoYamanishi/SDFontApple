@@ -18,6 +18,8 @@ SDFontApple comes with the following components:
 
 [Demo Video 2](https://youtube.com/shorts/o9dAm15HhKc) : Video capture from the demo App SWOpeningRollAR on iPhone 13 mini.
 
+[Demo Video 3](https://youtu.be/wMqBkdNkqu4) : Demo Video of Sticky Notes implemented in AR together with the built-in speech recognizer.
+
 # Table of Contents
 - [About Signed Distance Fonts](#about-signed-distance-fonts)
 - [Advantages of Signed Distance Fonts](#advantages-of-signed-distance-fonts)
