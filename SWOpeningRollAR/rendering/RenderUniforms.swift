@@ -22,7 +22,15 @@ struct UniformPerInstance {
     }
 
     static func updateMTLBuffer( buffer : MTLBuffer, instances : [Self] ) {
-        buffer.contents().copyMemory( from: instances, byteCount: MemoryLayout<Self>.stride * instances.count )
+
+        let rawPointer      = buffer.contents()
+        let typedPointer    = rawPointer.bindMemory( to: Self.self, capacity: MemoryLayout<Self>.stride * instances.count )
+        let bufferedPointer = UnsafeMutableBufferPointer( start: typedPointer, count: instances.count )
+        for (index, instance) in instances.enumerated() {
+            bufferedPointer[index]  = instance
+        }
+        // NOTE: The following does not work with optimization as of XCode 14.2
+        //buffer.contents().copyMemory( from: instances, byteCount: MemoryLayout<Self>.stride * instances.count )
     }
 }
 
@@ -61,7 +69,12 @@ struct UniformPerScene {
     }
 
     static func updateMTLBuffer( buffer : MTLBuffer, uniformPerScene : inout Self ) {
-        buffer.contents().copyMemory( from: &uniformPerScene, byteCount: MemoryLayout<Self>.stride )
+        let rawPointer      = buffer.contents()
+        let typedPointer    = rawPointer.bindMemory( to: Self.self, capacity: MemoryLayout<Self>.stride )
+        let bufferedPointer = UnsafeMutableBufferPointer( start: typedPointer, count: 1 )
+        bufferedPointer[0]  = uniformPerScene
+        // NOTE: The following does not work with optimization as of XCode 14.2
+        // buffer.contents().copyMemory( from: &uniformPerScene, byteCount: MemoryLayout<Self>.stride )
     }
 }
 
@@ -111,7 +124,12 @@ struct UniformSDFont {
     }
 
     static func updateMTLBuffer( buffer : MTLBuffer, v : inout Self ) {
-        buffer.contents().copyMemory( from: &v, byteCount: MemoryLayout<Self>.stride )
+        let rawPointer      = buffer.contents()
+        let typedPointer    = rawPointer.bindMemory( to: Self.self, capacity: MemoryLayout<Self>.stride )
+        let bufferedPointer = UnsafeMutableBufferPointer( start: typedPointer, count: 1 )
+        bufferedPointer[0]  = v
+        // NOTE: The following does not work with optimization as of XCode 14.2
+        // buffer.contents().copyMemory( from: &v, byteCount: MemoryLayout<Self>.stride )
     }
 }
 

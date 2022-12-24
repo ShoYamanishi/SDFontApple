@@ -4,7 +4,7 @@ import MetalKit
 /// The texture contains the glyphs in the quantized uint8 format, and the list of bounding boxes
 /// specifies the location and the size of each glyph in the texture.
 /// The MTLTexture can be stored in a PNG file, and the list of the bounding boxes can be
-/// stored in a JSON file as paart of the off-line processing.
+/// stored in a JSON file as part of the off-line processing.
 /// It does not produce font metrics, such as bearings and kerning, as we can rely on
 /// CoreText's type-setter at runtime.
 ///
@@ -20,7 +20,7 @@ import MetalKit
 ///
 /// 1. Fix a font size temporarily and find the size of the bounding boxes of the glyphs of the fonts.
 ///
-/// 2. Find a good rectanglar shape as close to the square as possible,
+/// 2. Find a good rectangular shape as close to the square as possible,
 ///    in which all the bounding boxes (including the margin for the spreads) can be accommodated.
 ///
 /// 3. Scale the rectangular shape, and the corresponding font size to fit the glyphs to the given texture size.
@@ -178,7 +178,7 @@ public class SDFontGenerator {
             glyphNumCutoff  : self.glyphNumCutoff,
             verbose         : verbose
         )
-        self.upSampledPerGlyphTextureSideLen = roundUp16( upSamplingFactor * Int(packingFinder.maxOuterGlyphBoundsSideLen) )
+        self.upSampledPerGlyphTextureSideLen = roundUp16( upSamplingFactor * Int(packingFinder.maxOuterGlyphBoundsSideLen + 1.0) )
         self.upSampledFontSize = CGFloat(upSamplingFactor) * packingFinder.referenceFontSize
 
         if verbose {
