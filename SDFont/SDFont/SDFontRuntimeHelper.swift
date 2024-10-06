@@ -153,12 +153,7 @@ public class SDFontRuntimeHelper {
                 var glyphs = [CGGlyph]( repeating: CGGlyph(), count: glyphCount )
                 CTRunGetGlyphs( ctRun, CFRangeMake(0,0), &glyphs )
 
-//                var runOrigins = [CGPoint]( repeating: CGPointMake(0,0), count: glyphCount )
-//                CTRunGetPositions( ctRun, CFRangeMake(0,0), &runOrigins )
-
                 for j in 0 ..< glyphCount {
-
-//                    let runOrigin = runOrigins[j]
 
                     let glyph     = glyphs[j]
                     let glyphBound = CTRunGetImageBounds( ctRun, context, CFRangeMake(j, 1));

@@ -178,6 +178,7 @@ public class SDFontGenerator {
             glyphNumCutoff  : self.glyphNumCutoff,
             verbose         : verbose
         )
+
         self.upSampledPerGlyphTextureSideLen = roundUp16( upSamplingFactor * Int(packingFinder.maxOuterGlyphBoundsSideLen + 1.0) )
         self.upSampledFontSize = CGFloat(upSamplingFactor) * packingFinder.referenceFontSize
 

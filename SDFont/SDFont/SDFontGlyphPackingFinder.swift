@@ -1,5 +1,4 @@
 import CoreGraphics
-import CoreText
 
 class SDFontGlyphPackingFinder {
 
@@ -15,7 +14,7 @@ class SDFontGlyphPackingFinder {
     let glyphNumCutoff              : Int
     let verbose                     : Bool
     var numGlyphs                   : Int
-    var referenceFont               : CTFont?
+    var referenceCGFont             : CGFont?
     var spreadThickness             : CGFloat
     var referenceFontSize           : CGFloat
     var glyphBoundsArray            : [ SignedDistanceFontGlyphBounds ]
@@ -40,14 +39,14 @@ class SDFontGlyphPackingFinder {
 
         getFontAndCheckFontName( fontName )
 
-        self.meanInnerGlyphBoundsSideLen = findMeanInnerSideLen()
+        self.meanInnerGlyphBoundsSideLen = findMeanInnerSideLen( fontSize : Self.FONT_SIZE_FOR_PACKING )
         self.spreadThickness             = spreadFactor * meanInnerGlyphBoundsSideLen
-        self.maxOuterGlyphBoundsSideLen  = findMaxOuterSideLen()
+        self.maxOuterGlyphBoundsSideLen  = findMaxOuterSideLen( fontSize : Self.FONT_SIZE_FOR_PACKING )
 
-        let bestArea = findBestPackedArea()
+        let bestArea = findBestPackedArea( fontSize : Self.FONT_SIZE_FOR_PACKING )
         let suggestedFontSize = floor( Self.FONT_SIZE_FOR_PACKING * CGFloat( drawAreaSideLen ) / max( bestArea.width, bestArea.height ) )
         self.referenceFontSize = findBestFontSize( initialSize: suggestedFontSize )
-        generateBoundingBoxes()
+        generateBoundingBoxes( fontSize : self.referenceFontSize )
 
         var areaSum : CGFloat = 0.0
 
@@ -56,8 +55,6 @@ class SDFontGlyphPackingFinder {
             areaSum += ( bound.outer.size.width * bound.outer.size.height )
         }
         self.occupancyRate = areaSum / ( CGFloat(self.drawAreaSideLen) * CGFloat(self.drawAreaSideLen) )
-
-        referenceFont = nil
     }
     
     func findBestFontSize( initialSize : CGFloat ) -> CGFloat {
@@ -66,13 +63,12 @@ class SDFontGlyphPackingFinder {
         let allowedAreaSize = CGFloat(self.drawAreaSideLen)
 
         while fontSize >= Self.FONT_SIZE_MINIMUM_ALLOWED {
-            self.referenceFont = CTFontCreateWithName( fontName, fontSize, nil )
 
-            self.meanInnerGlyphBoundsSideLen = findMeanInnerSideLen()
+            self.meanInnerGlyphBoundsSideLen = findMeanInnerSideLen( fontSize : fontSize )
             self.spreadThickness             = spreadFactor * self.meanInnerGlyphBoundsSideLen
-            self.maxOuterGlyphBoundsSideLen  = findMaxOuterSideLen()
+            self.maxOuterGlyphBoundsSideLen  = findMaxOuterSideLen( fontSize : fontSize )
 
-            let area = findPackedArea( widthLimit: allowedAreaSize, generateBoundingBoxes : false )
+            let area = findPackedArea( widthLimit: allowedAreaSize, generateBoundingBoxes : false, fontSize : fontSize )
 
             if area.width <= allowedAreaSize &&  area.height <= allowedAreaSize {
                 return fontSize
@@ -86,18 +82,10 @@ class SDFontGlyphPackingFinder {
 
     func getFontAndCheckFontName( _ fontName : CFString ) {
 
-        let font = CTFontCreateWithName( fontName, Self.FONT_SIZE_FOR_PACKING, nil )
-        let fontNameSelected = CTFontCopyFullName(font)
-
-        let f1 = String( fontName ).replacingOccurrences( of: "-", with: "" )
-        let f2 = String( fontNameSelected ).replacingOccurrences( of: " ", with: "" )
-
-        if f1 != f2 {
-            print ( "WARNING: Font selected [\(fontNameSelected)] is different from the requiested [\(fontName)].")
-        }
-        self.referenceFont = font
+        self.referenceCGFont = CGFont( fontName )
         self.referenceFontSize = Self.FONT_SIZE_FOR_PACKING
-        let glyphCount = CTFontGetGlyphCount( font )
+
+        let glyphCount = self.referenceCGFont!.numberOfGlyphs
 
         self.numGlyphs = min( self.glyphNumCutoff, glyphCount )
 
@@ -107,11 +95,11 @@ class SDFontGlyphPackingFinder {
         }
     }
 
-    func findBestPackedArea() -> CGSize {
+    func findBestPackedArea( fontSize : CGFloat ) -> CGSize {
 
         let sqNumGlyphs = sqrt( Double(numGlyphs) )
         let initialAreaWidthLimit = ( self.meanInnerGlyphBoundsSideLen + spreadThickness * 2.0 ) * sqNumGlyphs
-        var area = findPackedArea( widthLimit: initialAreaWidthLimit, generateBoundingBoxes : false )
+        var area = findPackedArea( widthLimit: initialAreaWidthLimit, generateBoundingBoxes : false, fontSize : fontSize )
         var bestArea = area
         var numTimesNotImproved = 0
         
@@ -129,35 +117,61 @@ class SDFontGlyphPackingFinder {
                 bestArea = area
             }
             let areaWidthLimit = area.width + (area.height - area.width) * Self.ALPHA
-            area = findPackedArea( widthLimit: areaWidthLimit, generateBoundingBoxes : false )
+            area = findPackedArea( widthLimit: areaWidthLimit, generateBoundingBoxes : false, fontSize : fontSize )
         }
 
         print ( "WARNING: Feasible packing area for font [\(fontName)] can not be found. Using [\(bestArea)].")
         return bestArea
     }
     
-    func findMeanInnerSideLen() -> CGFloat {
+    func findMeanInnerSideLen( fontSize : CGFloat ) -> CGFloat {
 
         var total : CGFloat = 0.0
 
         for i in 0 ..< self.numGlyphs {
+
             var g = CGGlyph(i)
-            var rect = CGRect()
-            CTFontGetBoundingRectsForGlyphs( self.referenceFont!,  .horizontal, &g, &rect, 1 )
+            var bboxes = UnsafeMutablePointer<CGRect>.allocate( capacity: 1 )
+
+            if ( !referenceCGFont!.getGlyphBBoxes( glyphs: [g], count: 1, bboxes: bboxes ) ) {
+                print ( "WARNING: Cant't retrieve BBox for glyph [\(g)].")
+                return 0.0
+            }
+
+            let fontScaleFactor = fontSize / CGFloat( referenceCGFont!.unitsPerEm )
+
+            let rect = CGRect(
+                origin: CGPoint( x: bboxes[0].origin.x * fontScaleFactor, y: bboxes[0].origin.y * fontScaleFactor ),
+                size: CGSize( width:  bboxes[0].width * fontScaleFactor, height: bboxes[0].height * fontScaleFactor )
+            )
+
             total += ( rect.width + rect.height )
         }
 
         return total / CGFloat( 2 * self.numGlyphs )
     }
 
-    func findMaxOuterSideLen() -> CGFloat {
+    func findMaxOuterSideLen( fontSize : CGFloat ) -> CGFloat {
 
         var maxSideLen : CGFloat = 0.0
 
         for i in 0 ..< numGlyphs {
             var g = CGGlyph(i)
-            var rect = CGRect()
-            CTFontGetBoundingRectsForGlyphs( self.referenceFont!,  .horizontal, &g, &rect, 1 )
+
+            var bboxes = UnsafeMutablePointer<CGRect>.allocate( capacity: 1 )
+
+            if ( !referenceCGFont!.getGlyphBBoxes( glyphs: [g], count: 1, bboxes: bboxes ) ) {
+                print ( "WARNING: Cant't retrieve BBox for glyph [\(g)].")
+                return 0.0
+            }
+
+            let fontScaleFactor = fontSize / CGFloat( referenceCGFont!.unitsPerEm )
+
+            let rect = CGRect(
+                origin: CGPoint( x: bboxes[0].origin.x * fontScaleFactor, y: bboxes[0].origin.y * fontScaleFactor ),
+                size: CGSize( width:  bboxes[0].width * fontScaleFactor, height: bboxes[0].height * fontScaleFactor )
+            )
+
             maxSideLen = max( maxSideLen, rect.width, rect.height )
         }
 
@@ -165,14 +179,14 @@ class SDFontGlyphPackingFinder {
     }
 
 
-    func generateBoundingBoxes() {
+    func generateBoundingBoxes( fontSize : CGFloat ) {
 
-        let _ = findPackedArea( widthLimit: CGFloat(self.drawAreaSideLen), generateBoundingBoxes : true )
+        let _ = findPackedArea( widthLimit: CGFloat(self.drawAreaSideLen), generateBoundingBoxes : true, fontSize : fontSize )
     }
 
     // pack the glyph left-to-right and then bottom-to-top in the area with the specified width.
-    func findPackedArea( widthLimit: CGFloat, generateBoundingBoxes : Bool ) -> CGSize {
-        
+    func findPackedArea( widthLimit: CGFloat, generateBoundingBoxes : Bool, fontSize : CGFloat ) -> CGSize {
+
         var xAdvance            : CGFloat = 0.0
         var yAdvance            : CGFloat = 0.0
         var maxHeightCurrentRow : CGFloat = 0.0
@@ -181,8 +195,20 @@ class SDFontGlyphPackingFinder {
         for i in 0 ..< self.numGlyphs {
             
             var g = CGGlyph(i)
-            var rect = CGRect()
-            CTFontGetBoundingRectsForGlyphs( self.referenceFont!, .horizontal, &g, &rect, 1 )
+
+            var bboxes = UnsafeMutablePointer<CGRect>.allocate( capacity: 1 )
+
+            if ( !referenceCGFont!.getGlyphBBoxes( glyphs: [g], count: 1, bboxes: bboxes ) ) {
+                print ( "WARNING: Cant't retrieve BBox for glyph [\(g)].")
+                return CGSize( width: 0, height: 0 )
+            }
+
+            let fontScaleFactor = fontSize / CGFloat( referenceCGFont!.unitsPerEm )
+
+            let rect = CGRect(
+                origin: CGPoint( x: bboxes[0].origin.x * fontScaleFactor, y: bboxes[0].origin.y * fontScaleFactor ),
+                size: CGSize( width:  bboxes[0].width * fontScaleFactor, height: bboxes[0].height * fontScaleFactor )
+            )
             
             // outer sizes rounded up to the integer
             let outerWidth  = ceil( rect.width  + ( spreadThickness * 2.0 ) )
