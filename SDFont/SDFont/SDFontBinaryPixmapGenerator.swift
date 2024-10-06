@@ -92,6 +92,9 @@ class SDFontBinaryPixmapGenerator {
 
         var translation = CGAffineTransform( translationX: glyphBounds.inner.origin.x - rect.origin.x,
                                                         y: glyphBounds.inner.origin.y - rect.origin.y  )
+        context.setShouldSmoothFonts( false )
+        context.setShouldSubpixelPositionFonts( false )
+        context.setShouldSubpixelQuantizeFonts( false )
         context.textMatrix = translation
         context.setFont( cgFont! )
         context.setFontSize( fontSize )

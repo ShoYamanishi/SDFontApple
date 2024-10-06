@@ -29,7 +29,9 @@ class MetalComputeBase {
     func createPipelineState( functionName : String) {
 
         do {
-            let library = try device.makeLibrary(source: SDFontMetalSourceCode, options: nil)
+//            var options = MTLCompileOptions()
+//            options.fastMathEnabled = false
+            let library = try device.makeLibrary(source: SDFontMetalSourceCode, options: nil )
 
             let desc = MTLComputePipelineDescriptor()
             desc.threadGroupSizeIsMultipleOfThreadExecutionWidth = true

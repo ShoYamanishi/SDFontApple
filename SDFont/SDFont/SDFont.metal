@@ -2,10 +2,10 @@
 using namespace metal;
 
 typedef struct _ConfigGen {
-    int draw_area_side_len; // number of pixels per row.
-    int spread_thickness;   // it detemines the rectangular area for searching signed distance.
-    int width;              // width of the glyph including the spread.
-    int height;             // height of the glyph including the spread.
+    int   draw_area_side_len; // number of pixels per row.
+    float spread_thickness;   // it detemines the rectangular area for searching signed distance.
+    int   width;              // width of the glyph including the spread.
+    int   height;             // height of the glyph including the spread.
 } ConfigGen;
 
 
@@ -26,14 +26,15 @@ kernel void generate_signed_distance (
         const int base_j = tid / config.width;
 
         const int v = pixmap_buffer[ base_j * config.draw_area_side_len + base_i ];
+        const int spread = (int)config.spread_thickness;
 
         float sq_dist_min = (float)config.draw_area_side_len * (float)config.draw_area_side_len * 4.0; // arbitrary large value
 
-        for ( int j = -1 * config.spread_thickness; j < config.spread_thickness; j++ ) {
+        for ( int j = -1 * spread; j < spread; j++ ) {
 
             if ( base_j + j >= 0 && base_j + j < config.height ) {
 
-                for ( int i = -1 * config.spread_thickness; i < config.spread_thickness; i++ ) {
+                for ( int i = -1 * spread; i < spread; i++ ) {
 
                     if ( base_i + i >= 0 && base_i + i < config.width ) {
 
@@ -41,7 +42,7 @@ kernel void generate_signed_distance (
 
                             const int v_other = pixmap_buffer[ ( base_j + j ) * config.draw_area_side_len + base_i + i ];
 
-                            if ( v != v_other ) {
+                            if ( ( v >= 128 && v_other < 128 ) || ( v < 128 && v_other >= 128 ) ) {
 
                                 const float sq_dist = (float)( i * i + j * j );
 
@@ -55,13 +56,14 @@ kernel void generate_signed_distance (
             }
         }
 
-        if ( v > 127 ) {
+        const float normalized_min_dist = ( /*precise::*/sqrt(sq_dist_min) - 1.0 ) / config.spread_thickness;
+        if ( v >= 128 ) {
             // inside glyph
-            sd_buffer[ base_j * config.draw_area_side_len + base_i ] = sqrt(sq_dist_min) - 0.5;
+            sd_buffer[ base_j * config.draw_area_side_len + base_i ] = 0.5 + normalized_min_dist / 2.0;
         }
         else {
             // outside glyph
-            sd_buffer[ base_j * config.draw_area_side_len + base_i ] = -1.0 * ( sqrt(sq_dist_min) - 0.5 );
+            sd_buffer[ base_j * config.draw_area_side_len + base_i ] = 0.5 - normalized_min_dist / 2.0;
         }
     }
 }
@@ -105,25 +107,12 @@ kernel void downsample (
         const int base_i_src = i_dst * config.upsampling_factor;
         const int base_j_src = j_dst * config.upsampling_factor;
 
-        float total_sd = 0.0;
-        float num_sds  = 0.0;
+        const float sd_in_upsampled = sd_buffer_src[ base_j_src * config.side_len_src + base_i_src ];
+        const long  quantized_sd = (long)( sd_in_upsampled * 256.0 );
+        const long  clamped_sd   = max( (long)0, ( min( (long)255, quantized_sd ) ) );
 
-        for ( int j_src = 0; j_src < config.upsampling_factor; j_src++ ) {
-
-            for ( int i_src = 0; i_src < config.upsampling_factor; i_src++ ) {
-
-                 const float sd_in_upsampled = sd_buffer_src[ ( base_j_src + j_src ) * config.side_len_src + base_i_src + i_src ];
-                 const float sd_in = sd_in_upsampled / ((float)config.upsampling_factor);
-                 total_sd += sd_in;
-                 num_sds  += 1.0;
-            }
-        }
-
-        const float   mean_sd       = total_sd / num_sds;
-        const float   normalized_sd = mean_sd / (2.0 * config.spread_thickness) + 0.5;
-        const long    quantized_sd  = (long)(normalized_sd * 256.0);
-        const long    clamped_sd    = max( (long)0, ( min( (long)255, quantized_sd ) ) );
         if ( config.flip_y ) {
+
             sd_buffer_dst[ ( ( config.side_len_dst - 1 ) - ( config.origin_y_dst + j_dst ) ) * config.side_len_dst + config.origin_x_dst + i_dst ] = (uint8_t)clamped_sd;
         }
         else {

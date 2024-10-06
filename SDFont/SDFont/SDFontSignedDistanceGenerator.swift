@@ -5,11 +5,11 @@ class SDFontSignedDistanceGenerator : MetalComputeBase {
     struct Config {
 
         var drawAreaSideLen : Int32
-        var spreadThickness : Int32
+        var spreadThickness : Float
         var width           : Int32
         var height          : Int32
 
-        init( drawAreaSideLen : Int32, spreadThickness : Int32 ) {
+        init( drawAreaSideLen : Int32, spreadThickness : Float ) {
             self.drawAreaSideLen = drawAreaSideLen
             self.spreadThickness = spreadThickness
             self.width           = 0
@@ -20,14 +20,14 @@ class SDFontSignedDistanceGenerator : MetalComputeBase {
     var config               : Config
     var signedDistanceBuffer : MTLBuffer!
 
-    init( device : MTLDevice, drawAreaSideLen : Int , spreadThickness : CGFloat ) {
+    init( device : MTLDevice, drawAreaSideLen : Int , spreadThickness : Float ) {
 
         self.signedDistanceBuffer = device.makeBuffer(
             length:  drawAreaSideLen * drawAreaSideLen * MemoryLayout<Float>.stride,
             options: .storageModeShared
         )
 
-        config = Config( drawAreaSideLen : Int32(drawAreaSideLen), spreadThickness : Int32(ceil(spreadThickness) ) )
+        config = Config( drawAreaSideLen : Int32(drawAreaSideLen), spreadThickness : spreadThickness )
 
         super.init( device : device )
 

@@ -201,7 +201,7 @@ public class SDFontGenerator {
         let signedDistanceGenerator = SDFontSignedDistanceGenerator(
             device          : device,
             drawAreaSideLen : self.upSampledPerGlyphTextureSideLen,
-            spreadThickness : packingFinder.spreadThickness * CGFloat(upSamplingFactor)
+            spreadThickness : Float(packingFinder.spreadThickness) * Float(upSamplingFactor)
         )
 
         let downsampler = Downsampler(
